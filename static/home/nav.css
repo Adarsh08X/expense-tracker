@@ -1,0 +1,41 @@
+body,html{
+    margin: 0;
+    padding: 0;
+}
+header.nav-bar{
+    
+    width: 100%;
+    height: 70px;
+    background-color: #282828;
+}
+h1.nav-bar{
+    position: absolute;
+    padding: 3px;
+    float: left;
+    margin-left: 2%;
+    margin-top: 10px;
+    /* font-family: 'Alfa Slab One', cursive; */
+    color: #39ca74;
+}
+span.nav-bar{
+    color: #ffffff;
+}
+ul.nav-bar{
+    width: auto;
+    float: right;
+    margin-top: 8px;
+}
+li.nav-bar{
+    display: inline-block;
+    padding: 15px 30px;
+}
+a{
+    text-align: center;
+    color: #ffffff;
+    text-decoration: 'Open Sans', sans-serif;
+    font-size: 1.2vw;
+}
+a:hover{
+    color: #23c594b7;
+    transition: 0.5s;
+}
