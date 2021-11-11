@@ -22,10 +22,10 @@ def home(request):
         return redirect('/')
     
     context = {'profile' : profile , 'expenses' : expenses}
-    return render(request , 'home.html' , context)
+    return render(request , 'home/home.html' , context)
 
 def bills(request):
-    return render(request , 'bills.html')
+    return render(request , 'home/bills.html')
 
 def past_expenditure(request):
-    return render(request , 'pastExpenditure.html')
+    return render(request , 'home/pastExpenditure.html')
