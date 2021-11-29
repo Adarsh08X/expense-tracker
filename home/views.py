@@ -1,7 +1,13 @@
 from django.shortcuts import render,redirect
 from .models import *
+import logging
+from django.contrib.auth.decorators import login_required
 
+logger = logging.getLogger(__name__)
+
+@login_required
 def home(request):
+    logger.error("here")
     profile = Profile.objects.filter(user = request.user).first()
     expenses = Expense.objects.filter(user = request.user)
     if request.method == 'POST':
@@ -24,8 +30,10 @@ def home(request):
     context = {'profile' : profile , 'expenses' : expenses}
     return render(request , 'home/home.html' , context)
 
+@login_required
 def bills(request):
     return render(request , 'home/bills.html')
 
+@login_required
 def past_expenditure(request):
     return render(request , 'home/pastExpenditure.html')
