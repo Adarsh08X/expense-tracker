@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from .models import *
 import logging
 from django.contrib.auth.decorators import login_required
-
+from users.models import Profile
 logger = logging.getLogger(__name__)
 
 @login_required
