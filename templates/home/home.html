@@ -15,6 +15,14 @@
     <div>
       <h4>Income</h4>
       <p id="money-plus" class="money plus">+₹{{profile.income}}</p>
+      <form id="salary" method="POST">
+        {% csrf_token %}
+        <div class="form-control">
+          <!-- <label for="text">Salary</label> -->
+          <input type="text" required name="salary" id="text" placeholder="Enter Amount..." />
+        </div>
+        <button class="btn" type="submit">Update Salary</button>
+      </form>
     </div>
     <div>
       <h4>Expense</h4>
@@ -46,7 +54,7 @@
   <form id="form" method="POST">
     {% csrf_token %}
     <div class="form-control">
-      <label for="text">Expense</label>
+      <label for="text">Transaction</label>
       <input type="text" required name="text" id="text" placeholder="Enter expense..." />
     </div>
     <div class="form-control">

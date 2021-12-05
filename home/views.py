@@ -7,9 +7,21 @@ logger = logging.getLogger(__name__)
 
 @login_required
 def home(request):
-    logger.error("here")
+
     profile = Profile.objects.filter(user = request.user).first()
     expenses = Expense.objects.filter(user = request.user)
+    
+    if request.method == 'POST' and 'salary' in request.POST :
+        new_salary = float(request.POST.get('salary'))
+        salary = profile.income
+        balance = profile.balance
+        update_balance = balance + new_salary - salary
+
+        profile.income = new_salary
+        profile.balance = update_balance
+        profile.save()
+        return redirect('/')
+        
     if request.method == 'POST':
         text = request.POST.get('text')
         amount = request.POST.get('amount')
@@ -36,4 +48,8 @@ def bills(request):
 
 @login_required
 def past_expenditure(request):
+    return render(request , 'home/pastExpenditure.html')
+
+@login_required
+def profile(request):
     return render(request , 'home/pastExpenditure.html')
