@@ -44,7 +44,33 @@ def home(request):
 
 @login_required
 def bills(request):
-    return render(request , 'home/bills.html')
+    profile = Profile.objects.filter(user = request.user).first()
+    bills = Bill.objects.filter(user = request.user)
+    if request.method =='POST':
+        text = request.POST.get('text')
+        amount = request.POST.get('amount')
+        note = request.POST.get('note')
+        bill = Bill(name=text, amount=amount, user=request.user,note=note)
+        bill.save()
+        return redirect('/bills')
+    bills = Bill.objects.filter(user = request.user)
+    context = {'bills' : bills}
+    return render(request , 'home/bills.html',context)
+
+@login_required
+def payment(request):
+    profile = Profile.objects.filter(user = request.user).first()
+    bills = Bill.objects.filter(user = request.user)
+    if request.method =='POST':
+        text = request.POST.get('text')
+        amount = request.POST.get('amount')
+        note = request.POST.get('note')
+        bill = Bill(name=text, amount=amount, user=request.user,note=note)
+        bill.save()
+        return redirect('/bills')
+    bills = Bill.objects.filter(user = request.user)
+    context = {'bills' : bills}
+    return render(request , 'home/payment.html',context)
 
 @login_required
 def past_expenditure(request):

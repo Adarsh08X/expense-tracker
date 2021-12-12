@@ -6,4 +6,5 @@ from .models import *
 
 # admin.site.register(Profile)
 admin.site.register(Expense)
+admin.site.register(Bill)
 
