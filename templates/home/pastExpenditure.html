@@ -1,10 +1,33 @@
 {% extends "home/base.html" %}
 {% load static %}
 {% block head %}
-      <title>Expenditure</title>
-      <link rel="stylesheet" type="text/css" href="{% static 'home/main.css' %}">
+<title>Expenditure</title>
+<link rel="stylesheet" type="text/css" href="{% static 'home/main.css' %}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 {% endblock %}
 
 {% block body %}
+      <div style="margin-left: 15%;margin-right: 15%;margin-top: 5%;">
+            <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+      </div>
+<script>
+      var xValues = ["Dec", "Jan", "Feb", "Mar", "April"];
+      var yValues = [5500, 7500, 7000, 5000, 6000];
+      var barColors = "rgb(68, 112, 101)";
+
+      new Chart("myChart", {
+            type: "bar",
+            data: {
+                  labels: xValues,
+                  datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                  }]
+            },
+            options: {
+                  legend: { display: false },
+            }
+      });
+</script>
 
 {% endblock %}

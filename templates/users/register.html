@@ -12,11 +12,13 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 {% endif %}
-  <form action="{% url 'register' %}" method="POST">
+<div style="padding: 100px;">
+  <form action="{% url 'register' %}" method="POST" style="justify-content: center;padding: 50px;border: 5px solid rgb(68, 112, 101)">
     {% csrf_token %}
         {{ form.as_p }}
     <br>
-    <button class="btn" type="submit">Sign Up</button>
+    <button class="btn btn-outline-primary" type="submit">Sign Up</button>
   </form>
+</div>
 
 {% endblock %}
