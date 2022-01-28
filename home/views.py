@@ -1,9 +1,12 @@
 from django.shortcuts import render,redirect
+from flask import jsonify
 from .models import *
 import logging
 from django.contrib.auth.decorators import login_required
 from users.models import Profile
 logger = logging.getLogger(__name__)
+import boto3
+import json
 
 @login_required
 def home(request):
@@ -74,7 +77,15 @@ def payment(request):
 
 @login_required
 def past_expenditure(request):
-    return render(request , 'home/pastExpenditure.html')
+    s3_client = boto3.client('s3', aws_access_key_id='AKIASU7QEJDNO5VAA4FM', aws_secret_access_key= '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')
+    response = s3_client.get_object(Bucket = 'past-expenses',Key='past_expense.json')
+    data = response['Body'].read().decode('utf-8')
+    
+    data = json.loads(data)
+    print(data)
+    context = {'past_expense' : data }
+    
+    return render(request , 'home/pastExpenditure.html',context)
 
 @login_required
 def profile(request):
