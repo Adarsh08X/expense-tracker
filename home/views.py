@@ -77,7 +77,7 @@ def payment(request):
 
 @login_required
 def past_expenditure(request):
-    s3_client = boto3.client('s3', aws_access_key_id='AKIASU7QEJDNO5VAA4FM', aws_secret_access_key= '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')
+    s3_client = boto3.client('s3')
     response = s3_client.get_object(Bucket = 'past-expenses',Key='past_expense.json')
     data = response['Body'].read().decode('utf-8')
     
